@@ -29,21 +29,50 @@ class List
 	
 	void addElement(int data)
 	{
+		System.out.println("Adding element : "+data);
 		Node a = new Node(data);
 		if(head==null)
 		{
 			head = a;
 			tail = head;
+			return;
 		}
-		else
+		tail.next  = a;
+		tail = a;
+	}
+
+	void addElement(int position, int data)
+	{
+		System.out.println("Adding element : "+data+" at position : "+position);
+		Node a = new Node(data);
+		if(position==0)  //Insertion at head
 		{
-			tail.next  = a;
-			tail = a;
+			a.next = head;
+			head = a;
+			return;
 		}
+		Node current = head;
+		if(current==null) //inserting on empty head
+		{
+			current = a;
+			return;
+		}
+		for(int i=0;i<position-1;i++)
+		{
+			if(current==null)
+			{
+				System.err.println("List not that long, has "+i+" elements. Ignoring insert ...");
+				return;
+			}
+			current = current.next;
+		}
+		a.next = current.next;
+		current.next = a;
 	}
 
 	void printList()
 	{
+		System.out.print("List now :   ");
 		Node current = head;
 		while(current!=null)
 		{
@@ -69,6 +98,10 @@ public class SingleLinkedList
 		l.addElement(8);
 		l.addElement(3);
 		l.addElement(0);
+		l.printList();
+		l.addElement(6,4);
+		l.addElement(0,4);
+		l.addElement(2,1);
 		l.printList();
 	}
 }
