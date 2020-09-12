@@ -43,31 +43,71 @@ class List
 
 	void addElement(int position, int data)
 	{
-		System.out.println("Adding element : "+data+" at position : "+position);
 		Node a = new Node(data);
+		if(position<0)
+		{
+			System.err.println("Invalid position, negative ");
+			return;
+		}
+		Node current = head;
+		for(int i=0;i<position-1;i++)
+		{
+			if(current==null)
+				break;
+			current = current.next;
+		}
+		if(current==null && position!=0)
+		{
+				System.err.println("List not that long, has "+getLength()+" elements. Ignoring insert ...");
+				return;
+		}
+		System.out.println("Adding element : "+data+" at position : "+position);
+		if(current==null && position==0) //inserting on empty head
+		{
+			head = a;
+			tail = head;
+			return;
+		}
 		if(position==0)  //Insertion at head
 		{
 			a.next = head;
 			head = a;
 			return;
 		}
-		Node current = head;
-		if(current==null) //inserting on empty head
+		a.next = current.next;
+		current.next = a;
+	}
+
+	void deleteElement(int position)
+	{
+		if(isEmpty())
 		{
-			current = a;
+			System.err.println("Empty list, can't delete");
+		}
+		if(position<0)
+		{
+			System.err.println("Invalid position, negative");
+		}
+		if(position==0)
+		{
+			System.out.println("Removing the head element");
+			head = head.next;
 			return;
 		}
+		Node current = head;
 		for(int i=0;i<position-1;i++)
 		{
 			if(current==null)
-			{
-				System.err.println("List not that long, has "+i+" elements. Ignoring insert ...");
-				return;
-			}
+				break;
 			current = current.next;
 		}
-		a.next = current.next;
-		current.next = a;
+		if(current.next==null)
+		{
+				System.err.println("List not that long, has "+getLength()+" elements. Ignoring delete ...");
+				return;
+		}
+		System.out.println("Deleting element at position : "+position);
+		current.next = current.next.next;
 	}
 
 	void printList()
@@ -85,7 +125,14 @@ class List
 	// iteratively returns the length
 	int getLength()
 	{
-		return 0;
+		int i=0;
+		Node current = head;
+		while(current!=null)
+		{
+			current = current.next;
+			i++;
+		}
+		return i;
 	}
 }
 
@@ -94,6 +141,7 @@ public class SingleLinkedList
 	public static void main(String[] args)
 	{
 		List l = new List();
+		l.addElement(0,-3);
 		l.addElement(6);
 		l.addElement(8);
 		l.addElement(3);
@@ -103,5 +151,11 @@ public class SingleLinkedList
 		l.addElement(0,4);
 		l.addElement(2,1);
 		l.printList();
+		System.out.println("Current length of list : "+l.getLength());
+		l.deleteElement(0);
+		l.deleteElement(3);
+		l.deleteElement(5);
+		l.printList();
+		System.out.println("Current length of list : "+l.getLength());
 	}
 }
