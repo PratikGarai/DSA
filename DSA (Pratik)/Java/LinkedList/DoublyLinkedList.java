@@ -38,16 +38,10 @@ class List
 	{
 		int length = getLength();
 		if(position<0)
-		{
 			System.err.println("Invalid position, negative ");
-			return ;
-		}
-		if(position>length)
-		{
+		else if(position>length)
 			System.err.println("Position is greater than length, ignoring insert...");
-			return;
-		}
-		if(isEmpty())
+		else if(isEmpty()||position==length)
 			addElement(data);
 		else
 		{
@@ -76,6 +70,28 @@ class List
 		}
 	}
 
+	void deleteLast()
+	{
+		int length = getLength();
+		if(length==0)
+		{
+			System.err.println("Empty list");
+		}
+		else if(length==1)
+		{
+			head = tail = null;
+		}
+		else if(length==2)
+		{
+			head.next = null;
+			tail = head;
+		}
+		else
+		{
+			tail = tail.prev;
+			tail.next = null;
+		}
+	}
 
 	boolean isEmpty()
 	{
@@ -125,6 +141,7 @@ public class DoublyLinkedList
 	public static void main(String[] args)
 	{
 		List l = new List();
+		l.deleteLast();
 		l.addElement(6);
 		l.addElement(4);
 		l.addElement(8);
@@ -133,6 +150,8 @@ public class DoublyLinkedList
 		l.addElement(4,-6);
 		l.addElement(7,30);
 		l.addElement(-2,30);
+		l.printList(false);
+		l.deleteLast();
 		l.printList(false);
 	}
 }
