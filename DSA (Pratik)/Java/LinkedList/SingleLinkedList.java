@@ -83,6 +83,7 @@ class List
 		if(isEmpty())
 		{
 			System.err.println("Empty list, can't delete");
+			return;
 		}
 		if(position<0)
 		{
@@ -141,6 +142,7 @@ public class SingleLinkedList
 	public static void main(String[] args)
 	{
 		List l = new List();
+		l.deleteElement(3);
 		l.addElement(0,-3);
 		l.addElement(6);
 		l.addElement(8);
