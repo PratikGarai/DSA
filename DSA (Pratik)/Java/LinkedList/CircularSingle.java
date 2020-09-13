@@ -41,8 +41,27 @@ class List
 
 	void addElement(int data, int position)
 	{
+		Node a = new Node(data);
 		if(position<0)
 			System.err.println("Invalid position, negative");
+		else if(position==0||position==length)
+		{
+			tail.next = a;
+			a.next = head;
+			if(position==0)
+				head = a;
+		}
+		else
+		{
+			if(position>length)
+				System.out.println("Position greater than length, reiterating to insert");
+			Node current = head;
+			for(int i=0;i<position-1;i++)
+				current = current.next;
+			a.next  = current.next;
+			current.next = a;
+		}
+		length++;
 	}
 
 	boolean isEmpty()
@@ -60,6 +79,17 @@ class List
 		}
 		System.out.println();
 	}
+
+	void printInfinite()
+	{
+		Node current = head;
+		while(current.next!=null)
+		{
+			System.out.print(current.data+"  ");
+			current = current.next;
+		}
+		System.out.println();
+	}
 }
 
 public class CircularSingle
@@ -70,6 +100,11 @@ public class CircularSingle
 		l.addElement(-1);
 		l.addElement(2);
 		l.addElement(-4);
+		l.printList();
+		l.addElement(1, 0);
+		l.addElement(8, 4);
+		l.printList();
+		l.addElement(9, 6);
 		l.printList();
 	}
 }
