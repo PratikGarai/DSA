@@ -31,7 +31,7 @@ class List
 	{
 		System.out.println("Adding element : "+data);
 		Node a = new Node(data);
-		if(head==null)
+		if(isEmpty())
 		{
 			head = a;
 			tail = head;
