@@ -15,9 +15,11 @@ class Node
 class List
 {
 	Node head, tail;
+	int length;
 	List()
 	{
 		head=tail=null;
+		length = 0;
 	}
 
 	void addElement(int d)
@@ -26,12 +28,21 @@ class List
 		if(isEmpty())
 		{
 			head=tail=a;
+			head.next = head;
 		}
 		else
 		{
 			tail.next = a;
 			tail = a;
+			tail.next = head;
 		}
+		length++;
+	}
+
+	void addElement(int data, int position)
+	{
+		if(position<0)
+			System.err.println("Invalid position, negative");
 	}
 
 	boolean isEmpty()
@@ -42,7 +53,7 @@ class List
 	void printList()
 	{
 		Node current = head;
-		while(current!=null)
+		for(int i=0;i<length;i++)
 		{
 			System.out.print(current.data+"  ");
 			current = current.next;
