@@ -62,6 +62,36 @@ class Tree
 		System.out.println();
 	}
 
+	void printPreorder(Node current)
+	{
+		if(current==null)
+			return;
+		System.out.print(current.data+"  ");
+		printPreorder(current.left);
+		printPreorder(current.right);
+	}
+
+	void printPreorder()
+	{
+		printPreorder(root);
+		System.out.println();
+	}
+
+	void printPostorder(Node current)
+	{
+		if(current==null)
+			return;
+		printPostorder(current.left);
+		printPostorder(current.right);
+		System.out.print(current.data+"  ");
+	}
+
+	void printPostorder()
+	{
+		printPostorder(root);
+		System.out.println();
+	}
+
 	boolean isEmpty()
 	{
 		return(root==null);
@@ -81,5 +111,7 @@ public class BasicBST
 		a.insert(5);
 		a.insert(7);
 		a.printInorder();
+		a.printPreorder();
+		a.printPostorder();
 	}
 }
