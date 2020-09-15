@@ -21,32 +21,50 @@ class Tree
 
 	void insert(int d)
 	{
-		Node current = root;
-		while(current!=null)
+		if(isEmpty())
+			root = new Node(d);
+		else
 		{
-			if(d<current.data)
-				current = current.left;
-			else
-				current = current.right;
+			Node current = root;
+			Node a = new Node(d);
+			while(true)
+			{
+				if(d<current.data && current.left==null)
+				{
+					current.left = a;
+					break;
+				}
+				else if(d>=current.data && current.right==null)
+				{
+					current.right = a;
+					break;
+				}
+				else if(d<current.data)
+					current = current.left;
+				else
+					current = current.right;
+			}
 		}
-		Node a = new Node(d);
-		current = a;
 	}
 
 	void printInorder(Node current)
 	{
-		if(current.left!=null)
-			printInorder(current.left);
+		if(current==null)
+			return;
+		printInorder(current.left);
 		System.out.print(current.data+"  ");
-		if(current.right!=null)
-			printInorder(current.right);
+		printInorder(current.right);
 	}
 
 	void printInorder()
 	{
-		Node current = root;
-		printInorder(current);
+		printInorder(root);
 		System.out.println();
+	}
+
+	boolean isEmpty()
+	{
+		return(root==null);
 	}
 }
 
