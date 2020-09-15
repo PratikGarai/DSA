@@ -84,6 +84,21 @@ class List
 		}
 	}
 
+	void delete(int position)
+	{
+		if(length==0||length==1)
+			delete();
+		else
+		{
+			Node current = head;
+			for(int i=0;i<position-1;i++)
+				current = current.next;
+			current.next = current.next.next;
+			tail  = current;
+			length--;
+		}
+	}
+
 	boolean isEmpty()
 	{
 		return (head==null);
@@ -128,6 +143,8 @@ public class CircularSingle
 		l.addElement(9, 6);
 		l.printList();
 		l.delete();
+		l.printList();
+		l.delete(3);
 		l.printList();
 	}
 }
