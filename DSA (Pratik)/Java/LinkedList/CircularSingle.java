@@ -64,6 +64,26 @@ class List
 		length++;
 	}
 
+	void delete()
+	{
+		if(length==0)
+			System.out.println("Empty list, can't delete");
+		else if(length==1)
+		{
+			head=tail=null;
+			length--;
+		}
+		else
+		{
+			Node current = head;
+			for(int i=0;i<length-2;i++)
+				current = current.next;
+			current.next = current.next.next;
+			tail  = current;
+			length--;
+		}
+	}
+
 	boolean isEmpty()
 	{
 		return (head==null);
@@ -97,6 +117,7 @@ public class CircularSingle
 	public static void main(String[] args)
 	{
 		List l = new List();
+		l.delete();
 		l.addElement(-1);
 		l.addElement(2);
 		l.addElement(-4);
@@ -105,6 +126,8 @@ public class CircularSingle
 		l.addElement(8, 4);
 		l.printList();
 		l.addElement(9, 6);
+		l.printList();
+		l.delete();
 		l.printList();
 	}
 }
