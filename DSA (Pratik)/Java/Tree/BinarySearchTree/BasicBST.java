@@ -92,6 +92,20 @@ class Tree
 		System.out.println();
 	}
 
+	boolean search(int data)
+	{
+		Node current = root;
+		while(current!=null)
+		{
+			if(data<current.data)
+				current = current.left;
+			else if(data>current.data)
+				current = current.right;
+			else return true;
+		}
+		return false;
+	}
+
 	boolean isEmpty()
 	{
 		return(root==null);
@@ -113,5 +127,7 @@ public class BasicBST
 		a.printInorder();
 		a.printPreorder();
 		a.printPostorder();
+		System.out.println(a.search(6));
+		System.out.println(a.search(0));
 	}
 }
