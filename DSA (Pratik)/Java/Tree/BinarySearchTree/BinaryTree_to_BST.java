@@ -1,17 +1,4 @@
-// program to convert binary tree to binary search tree
-/*
- * To insert data into the structure, you need to provide 2 parameters:
- * 	1. String position:
- * 		This is a string containing only 'L' and 'R'. The conrol starts
- * 		from the root node and moves to the appropriate child based on
- * 		the given directions. However, if the control encounters a null
- * 		node, it inserts the element there. However, if the node reached
- * 		by the end of the sequence is not empty or the string contains
- * 		alphabets other than 'L' and 'R' (case sensitive), the function 
- * 		returns false and prints an error message. If the insertion is 
- * 		successful it returns true.
- * 	2. int data : The data to be inserted.
-*/
+// program to convert binary tree to binary search tree without changing the structure
 
 class Node
 {
@@ -39,6 +26,21 @@ class Tree
 
 	boolean insert(String directions, int data)
 	{
+
+               /*
+		* To insert data into the structure, you need to provide 2 parameters:
+ 		* 	1. String position:
+	 	* 		This is a string containing only 'L' and 'R'. The conrol starts
+ 		* 		from the root node and moves to the appropriate child based on
+	 	* 		the given directions. However, if the control encounters a null
+ 		* 		node, it inserts the element there. However, if the node reached
+	 	* 		by the end of the sequence is not empty or the string contains
+ 		* 		alphabets other than 'L' and 'R' (case sensitive), the function 
+ 		* 		returns false and prints an error message. If the insertion is 
+ 		* 		successful it returns true.
+ 		* 	2. int data : The data to be inserted.
+	       */
+
 		Node current = root;
 		int i=0, n=directions.length();
 		for(i=0;i<n;i++)
@@ -65,6 +67,28 @@ class Tree
 		}
 		return false;
 	}
+
+	int get(String directions, int data)
+	{
+		/*
+		 * This method works in the same way as insert except that it
+		 * return INT_MIN of Java in case the directions reach a null
+		 * node.
+		*/
+
+		Node current = root;
+		int i=0, n=directions.length();
+		for(int i=0; i<n; i++)
+		{
+
+			if(current==null) return Integer.INT_MIN;
+			else if(directions.charAt(i)=='L') current=current.left;
+			else if(directions.charAt(i)=='R') current=current.right;
+			else return Integer.INT_MIN;
+		}
+		if(current==null) return Integer.INT_MIN;
+		return current.data;
+	}
 	
 	void printInorder(Node current)
 	{
@@ -87,5 +111,7 @@ public class BinaryTree_to _BST
 {
 	public static void main(String[] args)
 	{
+		Tree a = new Tree();
+
 	}
 }
