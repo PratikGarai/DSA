@@ -14,9 +14,11 @@ class Node
 class Tree
 {
 	Node root;
+	int population;
 	Tree()
 	{
 		root = null;
+		population = 0;
 	}
 
 	boolean isEmpty()
@@ -44,6 +46,8 @@ class Tree
 		if(isEmpty())
 		{
 			root = new Node(data);
+			population = 1;
+			return;
 		}
 		Node current = root;
 		int i=0, n=directions.length();
@@ -54,6 +58,7 @@ class Tree
 				if(current.left==null)
 				{
 					current.left = new Node(data);
+					population++;
 					return true;
 				}
 				current = current.left;
@@ -63,6 +68,7 @@ class Tree
 				if(current.right==null)
 				{
 					current.right = new Node(data);
+					population++;
 					return true;
 				}
 				current = current.right;
@@ -154,10 +160,47 @@ public class BinaryTree_to_BST
 		a.printInorder();
 	}
 
+	int inorder_filler(int position, int data[], String directions[], int length_of_direction, String current_direction)
+	{
+		if(current.left!=null)
+		{
+			current_direction += "L";
+			length_of_direction += 1;
+			inorder_filler(data, directions, length_of_direction, current_direction, current.left);
+		}
+		data[position] = current.data;
+		directions[position] = current_direction;
+		return ++position;
+		if(current.right!=null)
+		{
+			current_direction += "R";
+			length_of_direction += 1;
+			inorder_filler(data, directions, length_of_direction, current_direction, current.right);
+		}
+	}
+
+	void convert()
+	{
+		/* The approach is simple :
+		 * 1. Do inorder traversal, store the keys and values.
+		 * 2. Sort only the values.
+		 * 3. Insert the values back based on keys.
+		*/
+
+		Node current = a.root;
+		String[] directions = new String[a.population];
+		int data[] = new int[a.population];
+		int length_of_direction = 0;
+		String current_direction = "";
+		inorder_filler(0, data, directions, length_of_direction, current_direction, current);
+	}	
+
 	public static void main(String[] args)
 	{
 		BinaryTree_to_BST ob = new BinaryTree_to_BST();
 		ob.testInsertions(true);
+		ob.printTree();
+		ob.convert();
 		ob.printTree();
 	}
 }
