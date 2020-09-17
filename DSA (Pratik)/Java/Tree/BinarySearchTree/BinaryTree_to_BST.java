@@ -186,23 +186,54 @@ public class BinaryTree_to_BST
 		return position;
 	}
 
-	void merge(int arr1[], int arr2[])
+	int[] merge(int a[], int b[])
 	{
-
+		int l1 = a.length;
+		int l2 = b.length;
+		int i=0,j=0,k=0;
+		int[] c = new int[l1+l2];
+		while(i<l1 && j<l2)
+		{
+			if(a[i]<b[j])
+			{
+				c[k] = a[i];
+				k++;
+				i++;
+			}
+			else
+			{
+				c[k] = b[j];
+				k++;
+				j++;
+			}
+		}
+		while(i<l1)
+		{
+			c[k] = a[i];
+			k++;
+			i++;
+		}
+		while(j<l2)
+		{
+			c[k] = b[j];
+			k++;
+			j++;
+		}
+		return c;
 	}
 
 	int[] mergesort(int data[], int begin, int end)
 	{
 		// A very basic implementation of mergesort
 		
-		if(begin==end)
+		if(begin==end-1)
 		{
-			int[] arr1 = {data[i]};
+			int[] arr1 = {data[begin]};
 			return arr1;
 		}
-		int[] arr1 = mergesort(data, begin, end/2);
-		int[] arr2 = mergesort(data, end/2, end);
-		merge(arr1, arr2);
+		int[] arr1 = mergesort(data, begin, (begin+end)/2);
+		int[] arr2 = mergesort(data, (begin+end)/2, end);
+		return merge(arr1, arr2);
 	}
 
 	void convert()
@@ -219,7 +250,7 @@ public class BinaryTree_to_BST
 		int length_of_direction = 0;
 		String current_direction = "";
 		inorder_filler(0, data, directions, length_of_direction, current_direction, current);
-		mergesort(data, 0, a.population-1);
+		data = mergesort(data, 0, a.population);
 	}	
 
 	public static void main(String[] args)
