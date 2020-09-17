@@ -47,7 +47,7 @@ class Tree
 		{
 			root = new Node(data);
 			population = 1;
-			return;
+			return true;
 		}
 		Node current = root;
 		int i=0, n=directions.length();
@@ -160,23 +160,28 @@ public class BinaryTree_to_BST
 		a.printInorder();
 	}
 
-	int inorder_filler(int position, int data[], String directions[], int length_of_direction, String current_direction)
+	int inorder_filler(int position, int data[], String directions[], int length_of_direction, String current_direction, Node current)
 	{
 		if(current.left!=null)
 		{
 			current_direction += "L";
 			length_of_direction += 1;
-			inorder_filler(data, directions, length_of_direction, current_direction, current.left);
+			position = inorder_filler(position, data, directions, length_of_direction, current_direction, current.left);
+			current_direction = current_direction.substring(0, length_of_direction-1);
+			length_of_direction--;
 		}
 		data[position] = current.data;
 		directions[position] = current_direction;
-		return ++position;
+		position++;
 		if(current.right!=null)
 		{
 			current_direction += "R";
 			length_of_direction += 1;
-			inorder_filler(data, directions, length_of_direction, current_direction, current.right);
+			position = inorder_filler(position, data, directions, length_of_direction, current_direction, current.right);
+			current_direction = current_direction.substring(0, length_of_direction-1);
+			length_of_direction--;
 		}
+		return position;
 	}
 
 	void convert()
@@ -193,6 +198,8 @@ public class BinaryTree_to_BST
 		int length_of_direction = 0;
 		String current_direction = "";
 		inorder_filler(0, data, directions, length_of_direction, current_direction, current);
+		for(int i=0;i<a.population;i++)
+			System.out.println(data[i]+"\t\t"+directions[i]);
 	}	
 
 	public static void main(String[] args)
