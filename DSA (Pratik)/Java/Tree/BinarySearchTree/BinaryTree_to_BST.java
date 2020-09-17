@@ -19,48 +19,6 @@ class Tree
 		root = null;
 	}
 
-	void insert(int d)
-	{
-		if(isEmpty())
-			root = new Node(d);
-		else
-		{
-			Node current = root;
-			Node a = new Node(d);
-			while(true)
-			{
-				if(d<current.data && current.left==null)
-				{
-					current.left = a;
-					break;
-				}
-				else if(d>=current.data && current.right==null)
-				{
-					current.right = a;
-					break;
-				}
-				else if(d<current.data)
-					current = current.left;
-				else
-					current = current.right;
-			}
-		}
-	}
-
-	boolean search(int data)
-	{
-		Node current = root;
-		while(current!=null)
-		{
-			if(data<current.data)
-				current = current.left;
-			else if(data>current.data)
-				current = current.right;
-			else return true;
-		}
-		return false;
-	}
-
 	boolean isEmpty()
 	{
 		return(root==null);
@@ -81,4 +39,12 @@ class Tree
 		System.out.println();
 	}
 
+}
+
+public class BinaryTree_to _BST
+{
+	public static void main(String[] args)
+	{
+
+	}
 }
