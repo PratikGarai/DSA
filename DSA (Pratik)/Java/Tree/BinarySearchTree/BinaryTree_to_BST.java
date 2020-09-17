@@ -251,6 +251,8 @@ public class BinaryTree_to_BST
 		String current_direction = "";
 		inorder_filler(0, data, directions, length_of_direction, current_direction, current);
 		data = mergesort(data, 0, a.population);
+		for(int i=0;i<a.population;i++)
+			a.insert(directions[i], data[i]);
 	}	
 
 	public static void main(String[] args)
