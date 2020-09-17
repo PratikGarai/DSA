@@ -72,7 +72,7 @@ class Tree
 		return false;
 	}
 
-	int get(String directions, int data)
+	int get(String directions)
 	{
 		/*
 		 * This method works in the same way as insert except that it
@@ -119,7 +119,7 @@ public class BinaryTree_to_BST
 		a = new Tree();
 	}
 	
-	void testInsertions()
+	void testInsertions(boolean doTest)
 	{
 		/*
 		 * The tree I plan to make :
@@ -138,6 +138,15 @@ public class BinaryTree_to_BST
 		a.insert("LR", 3);
 		a.insert("LRL", 11);
 		a.insert("LRR", 4);
+		if(doTest) 	testInsertions();
+	}
+
+	void testInsertions()
+	{
+		System.out.println(a.get("LRL")+" : 11");
+		System.out.println(a.get("LRR")+" : 4");
+		System.out.println(a.get("R")+" : 2");
+		System.out.println(a.get("LL")+" : 5");
 	}
 
 	void printTree()
@@ -148,7 +157,7 @@ public class BinaryTree_to_BST
 	public static void main(String[] args)
 	{
 		BinaryTree_to_BST ob = new BinaryTree_to_BST();
-		ob.testInsertions();
+		ob.testInsertions(true);
 		ob.printTree();
 	}
 }
