@@ -107,11 +107,44 @@ class Tree
 
 }
 
-public class BinaryTree_to _BST
+public class BinaryTree_to_BST
 {
+	Tree a;
+	BinaryTree_to_BST()
+	{
+		a = new Tree();
+	}
+	
+	void testInsertions()
+	{
+		/*
+		 * The tree I plan to make :
+		 * 		8
+		 * 	      /   \
+		 * 	    10     2
+		 * 	  /    \
+		 * 	 5      3
+		 * 	      /   \
+		 * 	     11    4
+		 */
+		a.insert("", 8);
+		a.insert("L", 6);
+		a.insert("R", 2);
+		a.insert("LL", 5);
+		a.insert("LR", 3);
+		a.insert("LRL", 11);
+		a.insert("LRR", 4);
+	}
+
+	void printTree()
+	{
+		a.printInorder()
+	}
+
 	public static void main(String[] args)
 	{
-		Tree a = new Tree();
-
+		BinaryTree_to_BST ob = new BinaryTree_to_BST();
+		ob.testInsertions();
+		ob.printTree();
 	}
 }
