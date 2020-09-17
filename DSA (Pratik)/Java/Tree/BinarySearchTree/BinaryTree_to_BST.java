@@ -1,3 +1,5 @@
+// program to convert binary tree to binary search tree
+
 class Node
 {
 	Node left, right;
@@ -63,4 +65,20 @@ class Tree
 	{
 		return(root==null);
 	}
+	
+	void printInorder(Node current)
+	{
+		if(current==null)
+			return;
+		printInorder(current.left);
+		System.out.print(current.data+"  ");
+		printInorder(current.right);
+	}
+
+	void printInorder()
+	{
+		printInorder(root);
+		System.out.println();
+	}
+
 }
