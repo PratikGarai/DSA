@@ -33,14 +33,14 @@ class Tree
 		* To insert data into the structure, you need to provide 2 parameters:
  		* 	1. String position:
 	 	* 		This is a string containing only 'L' and 'R'. The conrol starts
- 		* 		from the root node and moves to the appropriate child based on
+ 		* 		from the root node and moves to the appropriate  child based on
 	 	* 		the given directions. However, if the control encounters a null
- 		* 		node, it inserts the element there. However, if the node reached
-	 	* 		by the end of the sequence is not empty or the string contains
- 		* 		alphabets other than 'L' and 'R' (case sensitive), the function 
- 		* 		returns false and prints an error message. If the insertion is 
- 		* 		successful it returns true.
- 		* 	2. int data : The data to be inserted.
+ 		* 		node, it inserts the element there. However, if the node reach-
+		* 		ed the string contains alphabets  other than 'L' and  'R' (case 
+		* 		sensitive), the function returns false. If the node is not null
+		* 		it replaces the value present. If the  insertion or replacement 
+ 		* 		is successful it returns true.
+ 		* 	2. int data : The data to be inserted / replaced with.
 	       */
 	
 		if(isEmpty())
@@ -75,7 +75,8 @@ class Tree
 			}
 			else return false;
 		}
-		return false;
+		current.data = data;
+		return true;
 	}
 
 	int get(String directions)
@@ -142,6 +143,7 @@ public class BinaryTree_to_BST
 		a.insert("R", 2);
 		a.insert("LL", 5);
 		a.insert("LR", 3);
+		a.insert("LRL", -3);
 		a.insert("LRL", 11);
 		a.insert("LRR", 4);
 		if(doTest) 	testInsertions();
@@ -184,6 +186,25 @@ public class BinaryTree_to_BST
 		return position;
 	}
 
+	void merge(int arr1[], int arr2[])
+	{
+
+	}
+
+	int[] mergesort(int data[], int begin, int end)
+	{
+		// A very basic implementation of mergesort
+		
+		if(begin==end)
+		{
+			int[] arr1 = {data[i]};
+			return arr1;
+		}
+		int[] arr1 = mergesort(data, begin, end/2);
+		int[] arr2 = mergesort(data, end/2, end);
+		merge(arr1, arr2);
+	}
+
 	void convert()
 	{
 		/* The approach is simple :
@@ -198,8 +219,7 @@ public class BinaryTree_to_BST
 		int length_of_direction = 0;
 		String current_direction = "";
 		inorder_filler(0, data, directions, length_of_direction, current_direction, current);
-		for(int i=0;i<a.population;i++)
-			System.out.println(data[i]+"\t\t"+directions[i]);
+		mergesort(data, 0, a.population-1);
 	}	
 
 	public static void main(String[] args)
