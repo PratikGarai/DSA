@@ -40,7 +40,11 @@ class Tree
  		* 		successful it returns true.
  		* 	2. int data : The data to be inserted.
 	       */
-
+	
+		if(isEmpty())
+		{
+			root = new Node(data);
+		}
 		Node current = root;
 		int i=0, n=directions.length();
 		for(i=0;i<n;i++)
@@ -50,7 +54,7 @@ class Tree
 				if(current.left==null)
 				{
 					current.left = new Node(data);
-					return True;
+					return true;
 				}
 				current = current.left;
 			}
@@ -59,7 +63,7 @@ class Tree
 				if(current.right==null)
 				{
 					current.right = new Node(data);
-					return True;
+					return true;
 				}
 				current = current.right;
 			}
@@ -72,21 +76,21 @@ class Tree
 	{
 		/*
 		 * This method works in the same way as insert except that it
-		 * return INT_MIN of Java in case the directions reach a null
+		 * return MIN_VALUE of Java in case the directions reach a null
 		 * node.
 		*/
 
 		Node current = root;
 		int i=0, n=directions.length();
-		for(int i=0; i<n; i++)
+		for(i=0; i<n; i++)
 		{
 
-			if(current==null) return Integer.INT_MIN;
+			if(current==null) return Integer.MIN_VALUE;
 			else if(directions.charAt(i)=='L') current=current.left;
 			else if(directions.charAt(i)=='R') current=current.right;
-			else return Integer.INT_MIN;
+			else return Integer.MIN_VALUE;
 		}
-		if(current==null) return Integer.INT_MIN;
+		if(current==null) return Integer.MIN_VALUE;
 		return current.data;
 	}
 	
@@ -128,7 +132,7 @@ public class BinaryTree_to_BST
 		 * 	     11    4
 		 */
 		a.insert("", 8);
-		a.insert("L", 6);
+		a.insert("L", 10);
 		a.insert("R", 2);
 		a.insert("LL", 5);
 		a.insert("LR", 3);
@@ -138,7 +142,7 @@ public class BinaryTree_to_BST
 
 	void printTree()
 	{
-		a.printInorder()
+		a.printInorder();
 	}
 
 	public static void main(String[] args)
