@@ -42,9 +42,10 @@ class permute
 		{
 			for(int i=ind;i<l;i++)
 			{
-				str = str.substring(0,ind)+str.substring(i, i+1)+str.substring(ind, i)+str.substring(i+1,l);
+				String temp_str = str;
+				str = str.substring(0,ind)+str.substring(i,i+1)+str.substring(ind,i)+str.substring(i+1,l);
 				count += getPermutations(ind+1);
-				str = str.substring(0,ind)+str.substring(i, i+1)+str.substring(ind, i)+str.substring(i+1,l);
+				str = temp_str;
 			}
 		}
 		return count;
