@@ -5,11 +5,10 @@
 class permute
 {
 	String str;
-	int l, print;
-	permute(String a, int b)
+	int l;
+	permute(String a)
 	{
 		l = a.length();
-		print = b;
 		str = sort_string(a);
 	}
 
@@ -39,12 +38,6 @@ class permute
 			System.out.println(str);
 			return 1;
 		}
-		for(int i=ind+1;i<l;i++)
-		{
-			str = str.substring(0,ind)+str.substring(ind,ind+1)+str.substring(ind+1,i)+str.substring(i,i+1)+str.substring(i+1,l);
-			count += getPermutations(ind+1);
-			str = str.substring(0,ind)+str.substring(ind,ind+1)+str.substring(ind+1,i)+str.substring(i,i+1)+str.substring(i+1,l);
-		}
 		return count;
 	}
 }
@@ -54,9 +47,8 @@ public class StringPermutationNonRepeat
 	public static void main(String[] args)
 	{
 		String a = args[0];
-		int b = Integer.valueOf(args[1]);
 		System.out.println("The entered string : "+a);
-		permute ob = new permute(a,b);
+		permute ob = new permute(a);
 		int p = ob.getPermutations(0);
 		System.out.println("Number of permutations : "+p);
 	}
