@@ -36,15 +36,14 @@ class permute
 		int count = 0;
 		if(ind == l-1)
 		{
-			// System.out.println(str);
+			System.out.println(str);
 			return 1;
 		}
 		for(int i=ind+1;i<l;i++)
 		{
 			str = str.substring(0,ind)+str.substring(ind,ind+1)+str.substring(ind+1,i)+str.substring(i,i+1)+str.substring(i+1,l);
-			System.out.println(str);
 			count += getPermutations(ind+1);
-			str = str.substring(0,ind)+str.substring(i,i+1)+str.substring(ind+1,i)+str.substring(ind,ind+1)+str.substring(i+1,l);
+			str = str.substring(0,ind)+str.substring(ind,ind+1)+str.substring(ind+1,i)+str.substring(i,i+1)+str.substring(i+1,l);
 		}
 		return count;
 	}
