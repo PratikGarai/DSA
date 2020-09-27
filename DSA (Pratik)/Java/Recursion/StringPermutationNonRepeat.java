@@ -38,6 +38,15 @@ class permute
 			System.out.println(str);
 			return 1;
 		}
+		else
+		{
+			for(int i=ind;i<l;i++)
+			{
+				str = str.substring(0,ind)+str.substring(i, i+1)+str.substring(ind, i)+str.substring(i+1,l);
+				count += getPermutations(ind+1);
+				str = str.substring(0,ind)+str.substring(i, i+1)+str.substring(ind, i)+str.substring(i+1,l);
+			}
+		}
 		return count;
 	}
 }
@@ -49,7 +58,8 @@ public class StringPermutationNonRepeat
 		String a = args[0];
 		System.out.println("The entered string : "+a);
 		permute ob = new permute(a);
+		System.out.println();
 		int p = ob.getPermutations(0);
-		System.out.println("Number of permutations : "+p);
+		System.out.println("\nNumber of permutations : "+p);
 	}
 }
