@@ -1,4 +1,3 @@
-// Implementation of ascending order selection sort in Java
 import java.util.Scanner;
 
 public class SelectionSort
