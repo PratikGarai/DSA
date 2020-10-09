@@ -140,6 +140,61 @@ class LinkedList
 			return lengthRecursive(head);
 		}
 
+		Node* getNodeByIndex(int ind)
+		{
+			if(ind<0)
+				return NULL;
+			Node* current = head;
+			while(ind!=0 && current!=NULL){
+				current = current->next;
+				ind--;
+			}
+			return current;
+		}
+
+		void swapIndexes(int x, int y){
+			if(x==y){
+				cout<<"Error! Same indexes\n";
+				return ;
+			}
+			if(x<0 || y<0){
+				cout<<"Error! Negative Index\n";
+				return ;
+			}
+			if(y<x){
+				int t = x;
+				x = y;
+				y = t;
+			}
+			Node* prev1 = getNodeByIndex(x-1);
+			Node* prev2 = getNodeByIndex(y-1);
+			Node* curr1 = getNodeByIndex(x);
+			Node* curr2 = getNodeByIndex(y);
+			Node* next1 = getNodeByIndex(x+1);
+			Node* next2 = getNodeByIndex(y+1);
+			if(curr1==NULL || curr2==NULL){
+				cout<<"Error! Index out of bounds\n";
+				return;
+			}
+			if(x-y!=1){
+				curr1->next = next2;
+				curr2->next = next1;
+				prev2->next = curr1;
+				if(prev1!=NULL)
+					prev1->next = curr2;
+				else
+					head = curr2;
+			}
+			else{
+				curr2->next = prev2;
+				prev2->next = next2;
+				if(prev1!=NULL)
+					prev1->next = curr2;
+				else
+					head = curr2;
+			}
+		}
+
 		void print(){
 			Node* current = head;
 			while(current!=NULL){
@@ -153,7 +208,7 @@ class LinkedList
 int main()
 {
 	LinkedList* l = new LinkedList();
-	int n, x, ch, ind;
+	int n, x, ch, ind, y;
 	bool flag = true;
 	cout<<"Enter the number of elements : ";
 	cin>>n;
@@ -165,7 +220,7 @@ int main()
 	cout<<"Contents of list : ";
 	l->print();
 
-	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n20. Print contents\n21. See menu again\n22. Exit\n";
+	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n9. Swap elements by index\n20. Print contents\n21. See menu again\n22. Exit\n";
 	while(flag)
 	{
 		cout<<"Enter choice : ";
@@ -206,12 +261,19 @@ int main()
 			case 8:
 				cout<<"Length is : "<<l->lengthRecursiveDriver()<<endl;
 				break;
+			case 9:
+				cout<<"Enter first index : ";
+				cin>>x;
+				cout<<"Enter second index : ";
+				cin>>y;
+				l->swapIndexes(x,y);
+				break;
 			case 20:
 				cout<<"Contents are : ";
 				l->print();
 				break;
 			case 21:
-				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n20. Print contents\n21. See menu again\n22. Exit\n";
+				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n9. Swap elements by index\n20. Print contents\n21. See menu again\n22. Exit\n";
 				break;
 			case 22:
 				flag = false;
