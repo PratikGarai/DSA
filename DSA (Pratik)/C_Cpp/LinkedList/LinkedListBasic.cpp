@@ -75,7 +75,6 @@ class LinkedList
 			}
 		}
 
-
 		void deleteFirst(){
 			if(head==NULL)
 				cout<<"Error! List is empty already\n";
@@ -120,6 +119,27 @@ class LinkedList
 			}
 		}
 
+		int lengthIterative(){
+			Node* current = head;
+			int len = 0;
+			while(current!=NULL){
+				len++;
+				current = current->next;
+			}
+			return len;
+		}
+
+		int lengthRecursive(Node* current){
+			if(current==NULL)
+				return 0;
+			else 
+				return 1+lengthRecursive(current->next);
+		}
+
+		int lengthRecursiveDriver(){
+			return lengthRecursive(head);
+		}
+
 		void print(){
 			Node* current = head;
 			while(current!=NULL){
@@ -145,7 +165,7 @@ int main()
 	cout<<"Contents of list : ";
 	l->print();
 
-	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n20. Print contents\n21. See menu again\n22. Exit\n";
+	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n20. Print contents\n21. See menu again\n22. Exit\n";
 	while(flag)
 	{
 		cout<<"Enter choice : ";
@@ -180,12 +200,18 @@ int main()
 				cin>>ind;
 				l->deleteIndex(ind);
 				break;
+			case 7:
+				cout<<"Length is : "<<l->lengthIterative()<<endl;
+				break;
+			case 8:
+				cout<<"Length is : "<<l->lengthRecursiveDriver()<<endl;
+				break;
 			case 20:
 				cout<<"Contents are : ";
 				l->print();
 				break;
 			case 21:
-				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n20. Print contents\n21. See menu again\n22. Exit\n";
+				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n20. Print contents\n21. See menu again\n22. Exit\n";
 				break;
 			case 22:
 				flag = false;
