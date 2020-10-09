@@ -47,6 +47,35 @@ class LinkedList
 			}
 		}
 
+		void addAtIndex(int x, int ind)
+		{
+			if(ind<0)
+				cout<<"Error! Index cannot be negative\n";
+			else if(ind==0)
+				addFirst(x);
+			else{
+				Node* current = head;
+				while(current->next!=NULL && ind!=1){
+					current = current->next;
+					ind--;
+				}
+				if(ind!=1){
+					cout<<"Error! Index exceeds length\n";
+					return;
+				}
+				else if(current->next==NULL){
+					add(x);
+					return;
+				}
+				else {
+					Node* newNode = new Node(x);
+					newNode->next = current->next;
+					current->next = newNode;
+				}
+			}
+		}
+
+
 		void deleteFirst(){
 			if(head==NULL)
 				cout<<"Error! List is empty already\n";
@@ -79,7 +108,7 @@ class LinkedList
 int main()
 {
 	LinkedList* l = new LinkedList();
-	int n, x, ch;
+	int n, x, ch, ind;
 	bool flag = true;
 	cout<<"Enter the number of elements : ";
 	cin>>n;
@@ -91,7 +120,7 @@ int main()
 	cout<<"Contents of list : ";
 	l->print();
 
-	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Print contents\n6. See menu again\n7. Exit\n";
+	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n20. Print contents\n21. See menu again\n22. Exit\n";
 	while(flag)
 	{
 		cout<<"Enter choice : ";
@@ -115,13 +144,20 @@ int main()
 				l->deleteFirst();
 				break;
 			case 5:
+				cout<<"Enter the number : ";
+				cin>>x;
+				cout<<"Enter the index : ";
+				cin>>ind;
+				l->addAtIndex(x,ind);
+				break;
+			case 20:
 				cout<<"Contents are : ";
 				l->print();
 				break;
-			case 6:
-				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Print contents\n6. See menu again\n7. Exit\n\n";
+			case 21:
+				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n20. Print contents\n21. See menu again\n22. Exit\n";
 				break;
-			case 7:
+			case 22:
 				flag = false;
 				break;
 			default :
