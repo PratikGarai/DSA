@@ -60,7 +60,7 @@ class LinkedList
 			else{
 				Node* current = head;
 				while(current->next->next!=NULL)
-					current->current.next;
+					current = current->next;
 				tail = current;
 				tail->next = NULL;
 			}
@@ -91,39 +91,44 @@ int main()
 	cout<<"Contents of list : ";
 	l->print();
 
-	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Print contents\n6. Exit\n";
+	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Print contents\n6. See menu again\n7. Exit\n";
 	while(flag)
 	{
+		cout<<"Enter choice : ";
 		cin>>ch;
 		switch(ch)
 		{
 			case 1:
 				cout<<"Enter the number : ";
 				cin>>x;
-				l.add(x);
+				l->add(x);
 				break;
 			case 2:
 				cout<<"Enter the number : ";
 				cin>>x;
-				l.addFirst(x);
+				l->addFirst(x);
 				break;
 			case 3:
-				l.deleteLast();
+				l->deleteLast();
 				break;
 			case 4:
-				l.deleteFirst();
+				l->deleteFirst();
 				break;
 			case 5:
 				cout<<"Contents are : ";
-				l.print();
+				l->print();
 				break;
 			case 6:
+				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Print contents\n6. See menu again\n7. Exit\n\n";
+				break;
+			case 7:
 				flag = false;
 				break;
 			default :
 				cout<<"Invalid option\n";
 		}
 	}
+	cout<<"\nBye!!!\n";
 
 	return n;
 }
