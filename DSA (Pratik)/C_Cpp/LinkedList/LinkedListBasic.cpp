@@ -195,7 +195,17 @@ class LinkedList
 		}
 		
 		void reverse(){
-
+			Node* prev = NULL;
+			Node* current = head;
+			Node* next = NULL;
+			while(current!=NULL){
+				next = current->next;
+				current->next = prev;
+				prev = current;
+				current = next;
+			}
+			tail = head;
+			head = prev;
 		}
 
 		void print(){
@@ -223,7 +233,7 @@ int main()
 	cout<<"Contents of list : ";
 	l->print();
 
-	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n9. Swap elements by index\n20. Print contents\n21. See menu again\n22. Exit\n";
+	cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n9. Swap elements by index\n10. Reverse\n20. Print contents\n21. See menu again\n22. Exit\n";
 	while(flag)
 	{
 		cout<<"Enter choice : ";
@@ -271,12 +281,15 @@ int main()
 				cin>>y;
 				l->swapIndexes(x,y);
 				break;
+			case 10:
+				l->reverse();
+				break;
 			case 20:
 				cout<<"Contents are : ";
 				l->print();
 				break;
 			case 21:
-				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n9. Swap elements by index\n20. Print contents\n21. See menu again\n22. Exit\n";
+				cout<<"\n\nEnter operation number : \n1. Add to end\n2. Add to beginning\n3. Delete from end\n4. Delete from beginning\n5. Add at index\n6. Delete by index\n7. Length(Iterative)\n8. Length(recursive)\n9. Swap elements by index\n10. Reverse\n20. Print contents\n21. See menu again\n22. Exit\n";
 				break;
 			case 22:
 				flag = false;
