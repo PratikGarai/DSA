@@ -176,23 +176,26 @@ class LinkedList
 				cout<<"Error! Index out of bounds\n";
 				return;
 			}
-			if(x-y!=1){
+
+			if(y-x!=1){
 				curr1->next = next2;
 				curr2->next = next1;
 				prev2->next = curr1;
-				if(prev1!=NULL)
-					prev1->next = curr2;
-				else
-					head = curr2;
 			}
 			else{
-				curr2->next = prev2;
-				prev2->next = next2;
-				if(prev1!=NULL)
-					prev1->next = curr2;
-				else
-					head = curr2;
+				curr1->next = curr2->next;
+				curr2->next = curr1;
 			}
+			if(prev1!=NULL)
+				prev1->next = curr2;
+			else
+				head = curr2;
+			if(next2==NULL)
+				tail = curr1;
+		}
+		
+		void reverse(){
+
 		}
 
 		void print(){
