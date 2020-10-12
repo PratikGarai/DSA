@@ -15,11 +15,9 @@ class Node
 
 class SingleLinkedList
 {
-	private:
+	public:
 		Node* head;
 		Node* tail;
-	
-	public:
 		SingleLinkedList(){
 			head = NULL;
 			tail = head;
