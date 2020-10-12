@@ -7,8 +7,8 @@ using namespace std;
 SingleLinkedList* mergeList(SingleLinkedList* l1, SingleLinkedList* l2)
 {
 	SingleLinkedList* merged_list = new SingleLinkedList();
-	Node* a = l1->getNodeByIndex(0);
-	Node* b = l2->getNodeByIndex(0);
+	Node* a = l1->head;
+	Node* b = l2->head;
 	while(a!=NULL && b!=NULL){
 		if(a->data<b->data){
 			merged_list->add(a->data);
@@ -33,12 +33,13 @@ SingleLinkedList* mergeList(SingleLinkedList* l1, SingleLinkedList* l2)
 void divideList( SingleLinkedList* list, SingleLinkedList** list1, SingleLinkedList** list2 )
 {
 	Node* source = list->head;
-	Node* slow = source;
-	Node* fast = source->next;
+	Node* slow;
+	Node* fast;
+	slow = source;
+	fast = source->next;
 	while(fast!=NULL){
 		fast = fast->next;
 		if(fast!=NULL){
-			prevFast = fast;
 			fast = fast->next;
 			slow = slow->next;
 		}
@@ -46,7 +47,7 @@ void divideList( SingleLinkedList* list, SingleLinkedList** list1, SingleLinkedL
 	(*list1)->head = list->head;
 	(*list1)->tail = slow;
 	(*list2)->head = slow->next;
-	(*list2)->tail = fast;
+	(*list2)->tail = list->tail;
 	slow->next = NULL;
 }
 
@@ -58,17 +59,9 @@ SingleLinkedList* mergeSort(SingleLinkedList* unsorted)
 	SingleLinkedList* a = new SingleLinkedList();
 	SingleLinkedList* b = new SingleLinkedList();
 
-	cout<<"List unsrted : ";
-	unsorted->print();
-	
 	divideList(unsorted, &a, &b);
-	mergeSort(a);
-	mergeSort(b);
-
-	cout<<"List a : ";
-	a->print();
-	cout<<"List b : ";
-	b->print();
+	a = mergeSort(a);
+	b = mergeSort(b);
 
 	return mergeList(a,b);
 }

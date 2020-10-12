@@ -20,7 +20,7 @@ class SingleLinkedList
 		Node* tail;
 		SingleLinkedList(){
 			head = NULL;
-			tail = head;
+			tail = NULL;
 		}
 		
 		void add(int x){
