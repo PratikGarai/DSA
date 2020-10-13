@@ -14,11 +14,11 @@ class SimpleNode
 
 		void printAll(){
 			cout<<data<<" ";
-			Node* current = next;
+			SimpleNode* current = next;
 			while(current!=NULL){
 				cout<<current->data<<" ";
 				current = current->next;
 			}
 			cout<<endl;
 		}
-}
+};
