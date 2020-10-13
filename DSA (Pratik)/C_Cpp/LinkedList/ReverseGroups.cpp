@@ -4,7 +4,6 @@ using namespace std;
 
 void reverseGroups(SingleLinkedList** a, int k)
 {
-	
 }
 
 int main()
