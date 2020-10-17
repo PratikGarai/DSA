@@ -15,7 +15,7 @@ class Stack
 		void push(int element)
 		{
 			if(top==capacity-1){
-				cout<<"Stack overflow\n";
+				cout<<"Error! Stack overflow\n";
 			}
 			else{
 				top++;
@@ -26,7 +26,7 @@ class Stack
 		int pop()
 		{
 			if(top==-1){
-				cout<<"Stack underflow\n";
+				cout<<"Error! Stack underflow\n";
 				return INT_MIN;
 			}
 			else{
@@ -37,7 +37,7 @@ class Stack
 		int peek()
 		{
 			if(top==-1){
-				cout<<"Stack empty\n";
+				cout<<"Error! Stack empty\n";
 				return INT_MIN;
 			}
 			else{
