@@ -6,7 +6,8 @@ class Stack
 	public :
 		char* a;
 		int top, capacity;
-		Stack(int l){
+		Stack(int l)
+		{
 			a = new char[l];
 			top = -1;
 			capacity = l;
@@ -38,10 +39,24 @@ class Stack
 		{
 			if(top==-1){
 				cout<<"Error! Stack empty\n";
-				return CHAR_MAX;
+				return CHAR_MIN;
 			}
 			else{
 				return a[top];
 			}
+		}
+
+		bool isEmpty()
+		{
+			if(top==-1)
+				return true;
+			return false;
+		}
+
+		bool isFull()
+		{
+			if(top==capacity-1)
+				return true;
+			return false;
 		}
 };

@@ -2,13 +2,35 @@
 #include<iostream>
 using namespace std;
 
-int prec(char c)
+int getPrecedence(char c)
 {
 	if(c=='^')
 		return 3;
 	if(c=='/'||c=='*')
 		return 2;
-	return 1;
+	if(c=='+'||c=='-')
+		return 1;
+	return -1;
+}
+
+void generatePostfix(char *arr, int l)
+{
+	Stack* operators = new Stack(l);
+	int i;
+	for(i=0;i<l;i++)
+	{
+		if(isalpha(arr[i])){
+			cout<<arr[i];
+		}
+		else {
+			while(!operators->isEmpty() && getPrecedence(operators->peek())>getPrecedence(arr[i]))
+				cout<<operators->pop();
+			operators->push(arr[i]);
+		}
+	}
+	while(!operators->isEmpty()){
+		cout<<operators->pop();
+	}
 }
 
 int main()
@@ -20,7 +42,8 @@ int main()
 	cout<<"Enter the expression : ";
 	cin>>str;
 	str[l] = '\0';
-	cout<<"The entered expression : "<<str<<endl;
+	cout<<"The postfix form :";
+	generatePostfix(str, l);
 
 	return 0;
 }

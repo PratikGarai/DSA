@@ -44,4 +44,18 @@ class Stack
 				return a[top];
 			}
 		}
+
+		bool isEmpty()
+		{
+			if(top==-1)
+				return true;
+			return false;
+		}
+
+		bool isFull()
+		{
+			if(top==capacity-1)
+				return true;
+			return false;
+		}
 };
