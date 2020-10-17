@@ -19,11 +19,19 @@ void generatePostfix(char *arr, int l)
 	int i;
 	for(i=0;i<l;i++)
 	{
-		if(isalpha(arr[i])){
+		if(isalpha(arr[i])) {
 			cout<<arr[i];
 		}
+		else if(arr[i]=='(') {
+			operators->push('(');
+		}
+		else if(arr[i]==')') {
+			while(operators->peek()!='(')
+				cout<<operators->pop();
+			operators->pop();
+		}
 		else {
-			while(!operators->isEmpty() && getPrecedence(operators->peek())>getPrecedence(arr[i]))
+			while(!operators->isEmpty() && getPrecedence(operators->peek())>getPrecedence(arr[i]) && operators->peek()!='(')
 				cout<<operators->pop();
 			operators->push(arr[i]);
 		}
