@@ -41,6 +41,29 @@ void generatePostfix(char *arr, int l)
 	}
 }
 
+bool validateExpression(char *arr, int l)
+{
+	int i;
+	int parantheses = 0;
+	for(i=0;i<l;i++)
+	{
+		if(isalpha(arr[i])||arr[i]=='+'||arr[i]=='-'||arr[i]=='/'||arr[i]=='*')
+			continue;
+		else if(arr[i]=='(')
+			parantheses++;
+		else if(arr[i]==')'){
+			parantheses--;
+			if(parantheses<0)
+				return false;
+		}
+		else
+			return false;
+	}
+	if(parantheses>0)
+		return false;
+	return true;
+}
+
 int main()
 {
 	int l;
@@ -50,8 +73,13 @@ int main()
 	cout<<"Enter the expression : ";
 	cin>>str;
 	str[l] = '\0';
-	cout<<"The postfix form :";
-	generatePostfix(str, l);
+	if(validateExpression(str, l))
+	{
+		cout<<"The postfix form :";
+		generatePostfix(str, l);
+	}
+	else
+		cout<<"Invalid expression";
 
 	return 0;
 }
