@@ -3,21 +3,38 @@
 using namespace std;
 
 Stack* st  = NULL;
+int* a;
 
-void pushToBottom()
+void pushToBottom(int n)
 {
+	if(st->isEmpty())
+		st->push(n);
+	else
+	{
+		int k = st->pop();
+		pushToBottom(n);
+		st->push(k);
+	}
 }
 
-void reverse()
+void reverse(int l)
 {
+	for(int i=l-1;i>=0;i--)
+		pushToBottom(a[i]);
+}
+
+void printReversed()
+{
+	while(!st->isEmpty())
+		cout<<st->pop()<<" ";
 }
 
 int main()
 {
-	int l,x;
+	int l,x,i;
 	cout<<"Enter the length of array : ";
 	cin>>l;
-	int a[l];
+	a = new int[l];
 	st = new Stack(l);
 	for(i=0;i<l;i++)
 	{
@@ -25,6 +42,9 @@ int main()
 		cin>>x;
 		a[i] = x;
 	}
+	reverse(l);
+	cout<<"Reversed array : ";
+	printReversed();
 
 	return 0;
 }
