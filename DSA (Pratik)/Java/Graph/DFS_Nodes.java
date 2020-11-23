@@ -3,6 +3,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 class DFS_Nodes
 {
@@ -38,6 +40,30 @@ class DFS_Nodes
 		System.out.println();
 	}
 
+	void printBFS(int n)
+	{
+		Queue<Integer> q = new LinkedList<Integer>();
+		q.add(n);
+		boolean[] visited = new boolean[nodes.length];
+		
+		System.out.print("The BFS is : ");
+		int a;
+		while(!q.isEmpty())
+		{
+			a = q.remove();
+			if(visited[a])
+				continue;
+			visited[a] = true;
+			System.out.print(a+" ");
+			for(int neighbour : nodes[a].neighbours)
+			{
+				if(!visited[neighbour])
+					q.add(neighbour);
+			}
+		}
+		System.out.println();
+	}
+
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
@@ -59,6 +85,10 @@ class DFS_Nodes
 		System.out.print("Enter the node to start DFS from : ");
 		n = in.nextInt();
 		ob.printDFS(n);
+
+		System.out.print("Enter the node to start BFS from : ");
+		n = in.nextInt();
+		ob.printBFS(n);
 	}
 }
 
