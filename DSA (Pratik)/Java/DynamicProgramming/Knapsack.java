@@ -20,6 +20,29 @@ class Knapsack
 			return recursive(n-1, cap);
 	}
 
+	int dp(int n, int cap)
+	{
+		int[][] t = new int[n+1][cap+1];
+		
+		for(int i=0;i<n+1;i++)
+			t[i][cap] = 0;
+		for(int i=0;i<cap+1;i++)
+			t[n][i] = 0;
+
+		for(int i=1;i<n+1;i++)
+		{
+			for(int j=1;j<cap+1;j++)
+			{
+				if(weights[i-1]<=j)
+					t[i][j] = Math.max( values[i-1]+t[i-1][j-weights[i-1]], t[i-1][j]);
+				else
+					t[i][j] = t[i-1][j];
+			}
+		}
+
+		return t[n][cap];
+	}
+
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
@@ -41,7 +64,8 @@ class Knapsack
 
 		Knapsack ob = new Knapsack(v,w);
 		
-		int res = ob.recursive(n-1, cap);
+		// int res = ob.recursive(n-1, cap);
+		int res = ob.dp(n,cap); 
 		System.out.println("The maximum value is : "+res);
 	}
 }
