@@ -25,16 +25,16 @@ class Knapsack
 		int[][] t = new int[n+1][cap+1];
 		
 		for(int i=0;i<n+1;i++)
-			t[i][cap] = 0;
+			t[i][0] = 0;
 		for(int i=0;i<cap+1;i++)
-			t[n][i] = 0;
+			t[0][i] = 0;
 
 		for(int i=1;i<n+1;i++)
 		{
 			for(int j=1;j<cap+1;j++)
 			{
 				if(weights[i-1]<=j)
-					t[i][j] = Math.max( values[i-1]+t[i-1][j-weights[i-1]], t[i-1][j]);
+					t[i][j] = Math.max(values[i-1]+t[i-1][j-weights[i-1]], t[i-1][j]);
 				else
 					t[i][j] = t[i-1][j];
 			}
