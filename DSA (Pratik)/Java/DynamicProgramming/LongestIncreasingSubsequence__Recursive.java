@@ -2,9 +2,32 @@ import java.util.Scanner;
 
 class LIS
 {
-	int getLIS(int[] arr)
+	int max;
+	int[] arr;
+	LIS(int[] a)
 	{
+		max = 0;
+		arr = a;
+	}
 
+	int getLIS(int n)
+	{
+		if(n==1)
+		{
+			return 1;
+		}
+
+		int res, max_ending_here = 1;
+		for(int i=1;i<n;i++)
+		{
+			res = getLIS(i);
+			if(arr[i-1] < arr[n-1] && res+1>max_ending_here)
+				max_ending_here = res+1;
+		}
+		if(max_ending_here>max)
+			max = max_ending_here;
+
+		return max_ending_here;
 	}
 
 	public static void main(String[] atgs)
@@ -19,7 +42,7 @@ class LIS
 			arr[i] = in.nextInt();
 		}
 
-		LIS ob = new LIS();
-		System.out.println("The LIS length is : "+ob.getLIS(arr));
+		LIS ob = new LIS(arr);
+		System.out.println("The LIS length is : "+ob.getLIS(n));
 	}
 }
