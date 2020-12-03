@@ -1,24 +1,13 @@
 import java.util.Scanner;
 import java.util.LinkedList;
 import java.util.Stack;
+import Graphs.MatrixGraph;
 
-class Traversals
+class Traversals extends MatrixGraph
 {
-	int[][] v;
-	int l;
-	boolean isUndirected;
 	Traversals(int n, boolean b)
 	{
-		l = n;
-		v = new int[n][n];
-		isUndirected = b;
-	}
-
-	void addEdge(int v1, int v2)
-	{
-		v[v1][v2] = 1;
-		if(isUndirected)
-			v[v2][v1] = 1;
+		super(n,b);
 	}
 
 	void printDFS()
@@ -80,7 +69,7 @@ class Traversals
 		Scanner in = new Scanner(System.in);
 		System.out.print("Enter the  number of vertices : ");
 		int n = in.nextInt();
-		Traversals ob = new Traversals(n, true);
+		Traversals ob = new Traversals(n, false);
 		System.out.print("Enter the number of edges : ");
 		int e = in.nextInt();
 		int e1, e2;

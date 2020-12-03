@@ -1,26 +1,27 @@
+package Graphs;
 import java.util.Scanner;
 
-class MatrixGraph
+public class MatrixGraph
 {
-	int[][] v;
-	int l;
-	boolean isDirected;
+	public int[][] v;
+	public int l;
+	public boolean isDirected;
 
-	MatrixGraph(int a, boolean b)
+	public MatrixGraph(int a, boolean b)
 	{
 		isDirected = b;
 		v =  new int[a][a];
 		l = a;
 	}
 
-	void addEdge(int a, int b)
+	public void addEdge(int a, int b)
 	{
 		v[a][b] = 1;
 		if(!isDirected)
 			v[b][a] = 1;
 	}
 
-	void acceptor()
+	public void acceptor()
 	{
 		Scanner in = new Scanner(System.in);
 		for(int i=0;i<l;i++)
@@ -32,7 +33,7 @@ class MatrixGraph
 		}
 	}
 
-	void printMatrix()
+	public void printMatrix()
 	{
 		for(int i=0;i<l;i++)
 		{
