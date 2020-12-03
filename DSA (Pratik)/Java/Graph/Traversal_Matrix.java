@@ -48,6 +48,33 @@ class Traversals
 		System.out.println();
 	}
 
+	void printBFS()
+	{
+		Scanner in = new Scanner(System.in);
+		System.out.print("Enter the node to start BFS from : ");
+		int n = in.nextInt();
+
+		LinkedList<Integer> lst = new LinkedList<Integer>();
+		boolean[] visited = new boolean[l];
+		lst.add(n);
+		int vertex;
+
+		while(!lst.isEmpty())
+		{
+			vertex = lst.remove();
+			if(visited[vertex])
+				continue;
+			System.out.print(vertex+" ");
+			visited[vertex]=true;
+			for(int i=0;i<l;i++)
+			{
+				if(v[vertex][i]==1 && !visited[i])
+					lst.add(i);
+			}
+		}
+		System.out.println();
+	}
+
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
@@ -65,5 +92,6 @@ class Traversals
 			ob.addEdge(e1,e2);
 		}
 		ob.printDFS();
+		ob.printBFS();
 	}
 }
