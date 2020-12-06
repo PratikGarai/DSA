@@ -11,6 +11,9 @@ public class MatrixGraphWeighted
 	{
 		isDirected = b;
 		v =  new int[a][a];
+		for(int i=0;i<a;i++)
+			for(int j=0;j<a;j++)
+				v[i][j] = Integer.MAX_VALUE;
 		l = a;
 	}
 
