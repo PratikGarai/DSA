@@ -21,4 +21,3 @@ public class NodesGraph
 			nodes[b].neighbours.add(nodes[a]);
 	}
 }
-
