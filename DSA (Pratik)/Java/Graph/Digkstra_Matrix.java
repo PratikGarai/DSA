@@ -83,7 +83,8 @@ class DigkstraShortestPath extends MatrixGraphWeighted
 		System.out.print("Enter the number of vertex : ");
 		int v = in.nextInt();
 
-		DigkstraShortestPath ob = new DigkstraShortestPath(v, false);
+		// DigkstraShortestPath ob = new DigkstraShortestPath(v, false);
+		DigkstraShortestPath ob = new DigkstraShortestPath(v, true);
 		System.out.print("Enter the number of edges : ");
 		int e = in.nextInt();
 		System.out.println("Enter the edges and weights : ");
