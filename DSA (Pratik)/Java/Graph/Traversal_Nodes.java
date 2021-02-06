@@ -1,39 +1,37 @@
 // Some graphs in the node style unweighted graph
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
+import Graphs.NodesGraph;
+import Graphs.Node;
 
-class DFS_Nodes
+class DFS_Nodes extends NodesGraph
 {
-	Node[] nodes;  					// the graph is here
-	DFS_Nodes(int n)
+	DFS_Nodes(int n, boolean b)
 	{
-		nodes = new Node[n];
-		for(int i=0;i<n;i++)
-			nodes[i] = new Node(i);
+		super(n,b);
 	}
 
 	void printDFS(int n)
 	{
-		Stack<Integer> stck = new Stack<Integer>();
-		stck.push(n);
+		Stack<Node> stck = new Stack<Node>();
+		stck.push(nodes[n]);
 		boolean[] visited = new boolean[nodes.length]; 
 
 		System.out.print("The DFS is : ");
-		int a;
+		Node a;
 		while(!stck.empty())
 		{
 			a = stck.pop();
-			if(visited[a])
+			if(visited[a.data])
 				continue;
-			visited[a] = true;
-			System.out.print(a+" ");
-			for(int neighbour: nodes[a].neighbours)
+			visited[a.data] = true;
+			System.out.print(a.data+" ");
+			for(Node neighbour: nodes[a.data].neighbours)
 			{
-				if(!visited[neighbour])
+				if(!visited[neighbour.data])
 					stck.push(neighbour);
 			}
 		}
@@ -42,22 +40,22 @@ class DFS_Nodes
 
 	void printBFS(int n)
 	{
-		Queue<Integer> q = new LinkedList<Integer>();
-		q.add(n);
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(nodes[n]);
 		boolean[] visited = new boolean[nodes.length];
 		
 		System.out.print("The BFS is : ");
-		int a;
+		Node a;
 		while(!q.isEmpty())
 		{
 			a = q.remove();
-			if(visited[a])
+			if(visited[a.data])
 				continue;
-			visited[a] = true;
-			System.out.print(a+" ");
-			for(int neighbour : nodes[a].neighbours)
+			visited[a.data] = true;
+			System.out.print(a.data+" ");
+			for(Node neighbour : nodes[a.data].neighbours)
 			{
-				if(!visited[neighbour])
+				if(!visited[neighbour.data])
 					q.add(neighbour);
 			}
 		}
@@ -69,7 +67,7 @@ class DFS_Nodes
 		Scanner in = new Scanner(System.in);
 		System.out.print("Enter the number of nodes : ");
 		int n = in.nextInt();
-		DFS_Nodes ob = new DFS_Nodes(n);
+		DFS_Nodes ob = new DFS_Nodes(n, false);
 		System.out.print("Enter the number of edges : ");
 		n = in.nextInt();
 		int a,b;
@@ -78,8 +76,7 @@ class DFS_Nodes
 			System.out.print("Enter the "+(i+1)+"th edge : ");
 			a = in.nextInt();
 			b = in.nextInt();
-			ob.nodes[a].neighbours.add(b);
-			ob.nodes[b].neighbours.add(a);
+			ob.addEdge(a,b);
 		}
 
 		System.out.print("Enter the node to start DFS from : ");
@@ -89,17 +86,5 @@ class DFS_Nodes
 		System.out.print("Enter the node to start BFS from : ");
 		n = in.nextInt();
 		ob.printBFS(n);
-	}
-}
-
-
-class Node
-{
-	int data ;
-	ArrayList<Integer> neighbours;
-	Node(int d)
-	{
-		data = d;
-		neighbours = new ArrayList<Integer>();
 	}
 }
